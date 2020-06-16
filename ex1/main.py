@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -7,13 +6,11 @@ from featureNormalize import featureNormalize
 from computeCostMulti import computeCostMulti
 from gradientDescentMulti import gradientDescentMulti
 
-data = pd.read_csv('ex1/ex1data1.txt',header=None)
-data = np.array(data)
+data = np.loadtxt('ex1/ex1data1.txt', delimiter=',')
 m, n = data.shape
 # plotData('scatter', data[:,0], data[:,1], 'data1', 'population', 'profit')
 # plt.show()
-X = np.concatenate((np.ones((m,1)), data[:,0:n-1].reshape(m,n-1)), axis=1)
-
+X = np.concatenate((np.ones((m,1)), data[:,0:n-1]), axis=1)
 y = data[:,1].reshape(m,1)
 theta = np.zeros((n, 1))
 
@@ -44,8 +41,7 @@ print('For population = 70,000, we predict a profit of \n', predict2*10000)
 # plt.show()
 
 
-data2 = pd.read_csv('ex1/ex1data2.txt',header=None)
-data2 = np.array(data2)
+data2 = np.loadtxt('ex1/ex1data2.txt', delimiter=',')
 m, n = data2.shape
 
 x_norm, mu, sigma = featureNormalize (data2[:,0:n-1],True)
