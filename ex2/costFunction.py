@@ -2,7 +2,10 @@ def costFunction(theta, X, y):
     import numpy as np
     from sigmoid import sigmoid
     m = len(y)
-    J = sum(-y * np.log(sigmoid(X.dot(theta))) - (1 - y) * np.log(1 - sigmoid(X.dot(theta))))/m
-    grad = np.transpose(X).dot(sigmoid(X.dot(theta)) - y) / m
+    # h = sigmoid(x.dot(theta))
+    # if np.sum(1-h < 1e-10) != 0:
+    #     return np.inf
+    J = (-y.T @ (np.log(sigmoid(X @ theta))) - (1 - y).T @ (np.log(1 - sigmoid(X @ theta))))/m
     
-    return J, grad
+    return J.reshape(1,)
+
